@@ -1,0 +1,8 @@
+<div class="row note" id="<%= note.persisted? ? dom_id(note) : "note-new" %>">
+  <div class="small-9 columns">
+      <h6><%= note.text %></h6>
+        <ul>
+          <li>Posted by <%= note.user.name %> on </li> <li> <%= note.created_at.strftime("%m/%d/%Y"" at ""%I:%M %p") %></li>
+        </ul>
+  </div>
+</div>

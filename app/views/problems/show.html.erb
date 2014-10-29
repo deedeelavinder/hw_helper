@@ -10,28 +10,27 @@
 
 <h2>Notes in Response</h2>
 
-<% if @problem.notes %>
-    <% @problem.notes.order("created_at").each do |note| %>
-        <div>
-          <h6><%= note.text %></h6>
-          <ul>
-            <li>Posted by <%= note.user.name %> on </li> <li> <%= note.created_at.strftime("%m/%d/%Y"" at ""%I:%M %p") %></li>
-          </ul>
-        </div>
-    <% end %>
+<div id="notes">
+
+<% if !@notes %>
+
+    <p>
+    No notes yet.
+    </p>
+
 <% else %>
-    <% if !@notes %>
-        <p>
-          No notes yet.
-        </p>
-    <% end %>
+
+    <% render @notes %>
 
 <% end %>
+
+</div>
+
 
 
 <% if user_signed_in? %>
 
-    <%= form_for([@problem, @problem.notes.build]) do |f| %>
+    <%= form_for @problem.notes.build, remote:true  do |f| %>
         <fieldset>
 
           <legend>Any thoughts?</legend>

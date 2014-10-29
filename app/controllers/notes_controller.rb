@@ -3,13 +3,25 @@ class NotesController < ApplicationController
 
 	def create
 		@problem = Problem.find(params[:problem_id])
-		@note = @problem.notes.build(note_params)
+		@notes = @problem.notes.order
+		@note = @problem.notes.create!(note_params)
 		@note.user = current_user
 
-		if @note.save_and_notify
-			redirect_to problem_path(@problem)
-		else
-			render "problems/show", alert: "Your note did not save."
+		respond_to do |format|
+			format.js do
+				if @note.save_and_notify
+					render :create, status: :created
+				else
+					render nothing: true, status: :bad_request
+				end
+
+			format.html do
+				if @note.save_and_notify
+					redirect_to @note
+				else
+					render "problems/show"
+				end
+			end
 		end
 	end
 

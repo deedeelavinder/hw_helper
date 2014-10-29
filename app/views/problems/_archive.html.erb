@@ -1,0 +1,12 @@
+
+<%= form_for(@problem, resolved: true, remote: true) do |f| %>
+    <fieldset>
+
+      <legend>Would you like to archive this problem?</legend>
+
+      <%= f.hidden_field :resolved, :value => true %>
+
+      <%= button_tag 'Archive Problem' %>
+
+    </fieldset>
+<% end %>

@@ -29,7 +29,9 @@ class ProblemsController < ApplicationController
   end
 
   def show
+		@note = Note.new
     @note = @problem.notes.build
+		@notes = @problem.notes
   end
 
   private

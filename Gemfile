@@ -30,8 +30,6 @@ gem 'spring',        group: :development
 
 gem "faker"
 
-gem "foundation-rails"
-
 gem 'gravtastic'
 
 gem "kaminari"
@@ -41,6 +39,11 @@ gem "letter_opener", :group => :development
 gem "rails_12factor", group: :production
 
 gem "simple_form"
+
+# Assets
+gem "font-awesome-rails"
+gem 'jquery-ui-rails'
+gem "foundation-rails"
 
 group :development, :test do
 	gem "better_errors"
