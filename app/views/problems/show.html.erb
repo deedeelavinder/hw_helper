@@ -11,20 +11,15 @@
 <h2>Notes in Response</h2>
 
 <div id="notes">
+  <% render @notes %>
+</div>
 
 <% if !@notes %>
-
     <p>
-    No notes yet.
+      No notes yet.
     </p>
-
-<% else %>
-
-    <% render @notes %>
-
 <% end %>
 
-</div>
 
 
 
@@ -45,7 +40,7 @@
     <% end %>
 
     <% if current_user.id == @problem.user.id %>
-        <%= form_for @problem, :resolved => true do |f| %>
+        <%= form_for @problem, :resolved => true, remote: true do |f| %>
             <fieldset>
 
               <legend>Would you like to archive this problem?</legend>

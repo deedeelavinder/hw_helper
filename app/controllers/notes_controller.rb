@@ -4,8 +4,9 @@ class NotesController < ApplicationController
 	def create
 		@problem = Problem.find(params[:problem_id])
 		@notes = @problem.notes.order
-		@note = @problem.notes.create!(note_params)
+		@note = @problem.notes.build(note_params)
 		@note.user = current_user
+
 
 		respond_to do |format|
 			format.js do
@@ -16,19 +17,23 @@ class NotesController < ApplicationController
 				end
 
 			format.html do
-				if @note.save_and_notify
-					redirect_to @note
-				else
-					render "problems/show"
+					if @note.save_and_notify
+						redirect_to @note
+					else
+						render "problems/show"
+					end
 				end
 			end
 		end
-	end
 
 	private
 
 	def note_params
-		params.require(:note).permit(:text)
+		params.require(:note).permit(:text, :problem_id)
+	end
+
 	end
 
 end
+
+
