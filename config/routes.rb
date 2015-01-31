@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { registrations: 'registrations' }
 
   resources :problems, only: [:index, :new, :create, :update, :show] do
-    resources :notes, only: :create, shallow: true
+    resources :notes, only: [:create], shallow: true
   end
 
   get '/users/sign_out' => 'problems#index'

@@ -7,7 +7,7 @@ class ActiveSupport::TestCase
   fixtures :all
 
   def signed_in_session
-	  { current_user_id: users(:one).id }
+    { current_user_id: users(:one).id }
   end
   # Add more helper methods to be used by all tests here...
 end
@@ -15,13 +15,13 @@ end
 class ActionController::TestCase
   include Devise::TestHelpers
 
-	def assert_invalid_model(model_name)
-		assert assigns[model_name], "Should have a #{model_name}"
-		assert assigns[model_name].invalid?, "Should have an invalid #{model_name}"
-	end
+  def assert_invalid_model(model_name)
+    assert assigns[model_name], "Should have a #{model_name}"
+    assert assigns[model_name].invalid?, "Should have an invalid #{model_name}"
+  end
 
-	def assert_saved_model(model_name)
-		assert assigns[model_name], "Should have a #{model_name}"
-		assert assigns[model_name].persisted?, "#{model_name} should be persisted"
-	end
+  def assert_saved_model(model_name)
+    assert assigns[model_name], "Should have a #{model_name}"
+    assert assigns[model_name].persisted?, "#{model_name} should be persisted"
+  end
 end

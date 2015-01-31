@@ -14,24 +14,22 @@ class ProblemsController < ApplicationController
     @problem = current_user.problems.build(problem_params)
 
     if @problem.save
-      redirect_to @problem, success: "Your problem has been posted."
+      redirect_to @problem, success: 'Your problem has been posted.'
     else
       render :new
     end
   end
 
   def update
-		if problem_params[:resolved] == "true"
-	    @problem.resolved = true
-	    @problem.save
-	    redirect_to problems_path
-		end
+    return unless problem_params[:resolved] == 'true'
+    @problem.resolved = true
+    @problem.save
+    redirect_to problems_path
   end
 
   def show
-		@note = Note.new
-    @note = @problem.notes.build
-		@notes = @problem.notes
+    @notes = @problem.notes
+    @note = Note.new
   end
 
   private
@@ -44,4 +42,3 @@ class ProblemsController < ApplicationController
     params.require(:problem).permit(:description, :history, :resolved)
   end
 end
-

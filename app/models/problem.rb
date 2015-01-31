@@ -1,6 +1,9 @@
 class Problem < ActiveRecord::Base
   belongs_to :user
-	has_many :notes
+
+  delegate :name, :email, to: :user, prefix: true
+
+  has_many :notes
 
   validates :description, presence: true
   validates :history, presence: true
@@ -11,7 +14,6 @@ class Problem < ActiveRecord::Base
   after_create :send_email
 
   def send_email
-   UserMailer.new_problem(self.id).deliver
+    UserMailer.new_problem(id).deliver
   end
-
 end

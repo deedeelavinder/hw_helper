@@ -2,7 +2,6 @@
   <div class="small-9 columns">
       <h6><%= note.text %></h6>
         <ul>
-          binding.pry
           <li>Posted by <%= note.user.name %> on </li> <li> <%= note.created_at.strftime("%m/%d/%Y"" at ""%I:%M %p") %></li>
         </ul>
   </div>

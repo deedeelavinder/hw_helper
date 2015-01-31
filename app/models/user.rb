@@ -4,11 +4,10 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-	has_many :problems
-	has_many :notes
+  has_many :problems
+  has_many :notes
 
   include Gravtastic
-  gravtastic  :default => 'identicon',
-	            :size => 45
-
+  gravtastic default: 'identicon',
+             size: 45
 end

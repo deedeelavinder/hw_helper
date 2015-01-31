@@ -25,33 +25,18 @@
 
 <% if user_signed_in? %>
 
-    <%= form_for @problem.notes.build, remote:true  do |f| %>
+    <%= simple_form_for [@problem, @note], remote: true  do |f| %>
         <fieldset>
 
           <legend>Any thoughts?</legend>
 
-          <%= f.label 'Note' %>
-          <%= f.text_area :text %>
-          <%= f.hidden_field :user, :value => current_user.name %>
+          <%= f.input :text, :label => false %>
 
-          <%= button_tag 'Add Note' %>
+          <%= f.button :submit, 'Add Note' %>
 
         </fieldset>
     <% end %>
 
-    <% if current_user.id == @problem.user.id %>
-        <%= form_for @problem, :resolved => true, remote: true do |f| %>
-            <fieldset>
-
-              <legend>Would you like to archive this problem?</legend>
-
-              <%= f.hidden_field :resolved, :value => true %>
-
-              <%= button_tag 'Archive Problem' %>
-
-            </fieldset>
-        <% end %>
-    <% end %>
 
 <% else %>
     <%= link_to 'Log in to leave a note', new_user_session_path %>
